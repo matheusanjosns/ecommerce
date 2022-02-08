@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 
 require_once("vendor/autoload.php");
 
@@ -8,7 +9,11 @@ $app->config('debug', true);
 
 $app->get('/', function() {
     
-	echo "OK";
+	$sql = new Hcode\DB\SQL();
+	
+    $RESULTADOS = $sql->SELECT("SELECT * FROM TB_USERS");
+
+	echo json_encode($RESULTADOS);
 
 });
 

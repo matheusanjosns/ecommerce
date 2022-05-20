@@ -60,8 +60,8 @@ class User extends Model {
 		}
 
 		$data = $results[0];
-
-		if (password_verify($password, $data["despassword"]) === true)
+		//die(var_dump($results));
+		if (password_verify($password, $data["despassword"]))
 		{
 
 			$user = new User();
@@ -76,8 +76,9 @@ class User extends Model {
 
 		} else {
 			throw new \Exception("Usuário inexistente ou senha inválida.");
+			
 		}
-
+		
 	}
 
 	public static function verifyLogin($inadmin = true)
@@ -93,15 +94,6 @@ class User extends Model {
 			exit;
 
 		}
-
-	}
-
-    public static function getPasswordHash($password)
-	{
-
-		return password_hash($password, PASSWORD_DEFAULT, [
-			'cost'=>12
-		]);
 
 	}
 
@@ -126,7 +118,7 @@ class User extends Model {
 		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>User::getPasswordHash($this->getdespassword()),
+			":despassword"=>$this->getdespassword(),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
@@ -294,6 +286,16 @@ class User extends Model {
 			":password"=>$password,
 			":iduser"=>$this->getiduser()
 		));
+	}
+
+	
+    public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
+
 	}
 }
 ?>

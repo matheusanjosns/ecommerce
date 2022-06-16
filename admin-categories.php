@@ -126,7 +126,7 @@ $app->get("/admin/categories/:idcategory/products/:idproduct/add", function($idc
 
 
 $app->get("/admin/categories/:idcategory/products/:idproduct/remove", function($idcategory, $idproduct){
-	
+
 	User::verifyLogin();
 
 	$category = new Category();
@@ -139,8 +139,9 @@ $app->get("/admin/categories/:idcategory/products/:idproduct/remove", function($
 
 	$category->removeProduct($product);
 
-	header("Location: /admin/categories/".$idcategory. "/products");
+	header("Location: /admin/categories/".$idcategory."/products");
 	exit;
+
 });
 
 

@@ -137,8 +137,8 @@ class Category extends Model {
 
     public function removeProduct(Product $product){
       $sql = new Sql();
-      
-      $sql->query("DELETE FROM tb_productscategories where idcategory = :idcategory and idproduct = :idproduct)",[
+
+      $sql->query("DELETE FROM tb_productscategories WHERE idcategory = :idcategory AND idproduct = :idproduct", [
         ':idcategory'=>$this->getidcategory(),
         ':idproduct'=>$product->getidproduct()
       ]);

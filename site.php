@@ -1,5 +1,6 @@
 <?php
 
+use Hcode\Model\Cart;
 use Hcode\Model\Product;
 use Hcode\Model\Category;
 use \Hcode\Page;
@@ -58,5 +59,16 @@ $app->get("/products/:desurl", function($desurl){
 	]);
 
 });
+
+$app->get("/cart", function(){ 
+
+   $cart = Cart::getFromSession();
+
+   $page = new Page();
+
+   $page->setTpl("cart");
+
+});
+
 
 ?>

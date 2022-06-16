@@ -12,7 +12,19 @@ class User extends Model {
     const SECRET = "HcodePhp7_Secret";
 	const SECRET_IV = "HcodePhp7_Secret_IV";
 
-    public static function checkLogin($inadmin = true)
+	public static function getFromSession()
+	{
+		if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION] > 0){
+
+			$user = new User();
+
+			$user->setData($_SESSION[User::SESSION]);
+		}
+
+		return $user;
+	}
+
+	public static function checkLogin($inadmin = true)
 	{
 
 		if (

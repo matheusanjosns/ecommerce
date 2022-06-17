@@ -9,7 +9,7 @@ use \Hcode\Mailer;
 class User extends Model {
 
     const SESSION = "User";
-    const SECRET = "HcodePhp7_Secret";
+	const SECRET = "HcodePhp7_Secret";
 	const SECRET_IV = "HcodePhp7_Secret_IV";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
@@ -133,7 +133,7 @@ class User extends Model {
 		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>$this->getdespassword(),
+			":despassword"=>User::getPasswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
@@ -363,7 +363,7 @@ class User extends Model {
 
 	}
 
-	public static function setErrorRegister($msg)
+	public static function setErrorRegister(String $msg)
 	{
 
 		$_SESSION[User::ERROR_REGISTER] = $msg;

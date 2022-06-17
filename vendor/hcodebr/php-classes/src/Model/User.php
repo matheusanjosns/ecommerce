@@ -400,5 +400,6 @@ class User extends Model {
 		return (count($results) > 0);
 
 	}
+	
 }
 ?>

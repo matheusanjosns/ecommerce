@@ -63,8 +63,6 @@ $app->get("/admin/users", function(){
        $user = new User();
     
        $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
-
-	   $_POST['despassword'] = User::getPasswordHash($_POST['despassword']);
     
        $user->setData($_POST);
     

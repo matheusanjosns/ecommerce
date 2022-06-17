@@ -1,8 +1,21 @@
 <?php
 
-function formatPrice(float $vlprice){
+use \Hcode\Model\User;
 
-    return number_format($vlprice, 2 ,",", ".");
-}
+    function formatPrice($vlprice){
 
+        return number_format($vlprice, 2 ,",", ".");
+    }
+
+    function checkLogin($inadmin = true){
+
+        return User::checkLogin($inadmin);
+    }
+
+    function getUserName(){
+
+        $user = User::getFromSession();
+
+        return $user->getdesperson();
+    }
 ?>

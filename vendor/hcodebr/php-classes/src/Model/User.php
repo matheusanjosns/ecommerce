@@ -75,7 +75,7 @@ class User extends Model {
 		}
 
 		$data = $results[0];
-		//die(var_dump($results));
+		
 		if (password_verify($password, $data["despassword"]))
 		{
 
